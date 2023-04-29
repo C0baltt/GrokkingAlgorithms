@@ -10,16 +10,17 @@ namespace GrokkingAlgorithms
     {
         static void Main(string[] args)
         {
-            int[] array = { 10, 11, 15, 19, 20 };
+            int[] array = { 10, 11, 15, 19, 20, 25, 30, 36, 68, 84 };
 
             int low = 0;
             int hight = array.Length - 1;
-            int item = 15;
-            int mid = array[0];
+            int item = 25;
+            int i = 0;
 
             while (low <= hight)
             {
-                mid = low + hight;
+                ++i;
+                int mid = (low + hight)/2;
                 int guess = array[mid];
 
                 if (guess == item)
@@ -37,7 +38,9 @@ namespace GrokkingAlgorithms
                 }
             }
 
-            Console.WriteLine(mid);
+            Console.WriteLine($"Количество итераций {i}");
+
+        //    Console.WriteLine(mid);
             Console.ReadKey();
         }
     }
