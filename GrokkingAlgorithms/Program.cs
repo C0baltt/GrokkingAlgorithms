@@ -11,36 +11,40 @@ namespace GrokkingAlgorithms
         static void Main(string[] args)
         {
             int[] array = { 10, 11, 15, 19, 20, 25, 30, 36, 68, 84 };
+            int num = 68;
 
-            int low = 0;
-            int hight = array.Length - 1;
-            int item = 25;
-            int i = 0;
+            string result = BinarySearch(array, num);
 
-            while (low <= hight)
+            string BinarySearch(int[] _array, int item)
             {
-                ++i;
-                int mid = (low + hight)/2;
-                int guess = array[mid];
+                int i = 0;
+                int low = 0;
+                int hight = _array.Length - 1;
 
-                if (guess == item)
+                while (low <= hight)
                 {
-                    Console.WriteLine($"Искомый элемент {item} в массиве найден под номером {mid+1}");
-                    break;
+                    ++i;
+                    int mid = (low + hight) / 2;
+                    int guess = _array[mid];
+
+                    if (guess == item)
+                    {
+                        return $"Номер элемента {++mid}, количество итераций {i} ";
+                    }
+                    else if (guess > item)
+                    {
+                        hight = mid - 1;
+                    }
+                    else
+                    {
+                        low = mid + 1;
+                    }
                 }
-                else if (guess > item)
-                {
-                    hight = mid - 1;
-                }
-                else 
-                {
-                low = mid + 1;
-                }
+                
+                return $"Элемент не найден, количество итераций {i}";
             }
 
-            Console.WriteLine($"Количество итераций {i}");
-
-        //    Console.WriteLine(mid);
+            Console.WriteLine(result);
             Console.ReadKey();
         }
     }
