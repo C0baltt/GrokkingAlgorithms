@@ -10,45 +10,48 @@ namespace GrokkingAlgorithms
     {
         static void Main(string[] args)
         {
-            int[] array = { 10,  11,  15,  19,  20,  25,  30,  36, 
-                            68,  84,  86, 128, 134, 151, 153, 189, 
-                           190, 284, 290, 301, 354, 372, 374, 375,
-                           376, 380, 390, 395, 397, 400, 408, 419};
+            int[] startArray = new[] {0, 2, 1, 4, 9, 8, 5, 3, 7, 6 };
+            int[] newArray = new int[10];
+            int smallest;
+            int smallestIndex;
 
-            int num = 419;
+            newArray = SelectionSort(startArray);
 
-            string result = BinarySearch(array, num);
-
-            string BinarySearch(int[] _array, int item)
+            for (int i = 0; i < newArray.Length; i++)
             {
-                int i = 0;
-                int low = 0;
-                int hight = _array.Length - 1;
+                Console.Write($"{newArray[i]} ");
+            }
 
-                while (low <= hight)
+            Console.ReadKey();
+
+            int[] SelectionSort(int[] tempArray)
+            {
+
+                for (int i = 0; i < newArray.Length; i++)
                 {
-                    ++i;
-                    int mid = (low + hight) / 2;
-                    int guess = _array[mid];
+                    smallest = FindSmallest(tempArray);
+                    newArray[i] = smallest;
+                }
 
-                    if (guess == item)
+                return tempArray;
+            }
+
+            int FindSmallest(int[] arr)
+            {
+                smallest = arr[0];
+                smallestIndex = 0;
+
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] < smallest)
                     {
-                        return $"Номер элемента {++mid}, количество итераций {i} ";
-                    }
-                    else if (guess > item)
-                    {
-                        hight = mid - 1;
-                    }
-                    else
-                    {
-                        low = mid + 1;
+                        smallest = arr[i];
+                        smallestIndex = i;
                     }
                 }
-                
-                return $"Элемент не найден, количество итераций {i}";
+                        return smallestIndex;
             }
-            Console.WriteLine(result);
-            Console.ReadKey();
+
         }
     }
 }
