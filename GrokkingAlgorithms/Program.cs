@@ -10,47 +10,42 @@ namespace GrokkingAlgorithms
     {
         static void Main(string[] args)
         {
-            int[] startArray = new[] {0, 2, 1, 4, 9, 8, 5, 3, 7, 6 };
-            int[] newArray = new int[10];
-            int smallest;
-            int smallestIndex;
+            Random rand = new Random();
 
-            newArray = SelectionSort(startArray);
+            int[] nums = new int[rand.Next(10,30)];
+            int temp;
 
-            for (int i = 0; i < newArray.Length; i++)
+            Console.WriteLine($"The length of array: {nums.Length + 1}\n");
+
+            Console.WriteLine("Array:");
+
+            for (int i = 0; i < nums.Length ; i++)
             {
-                Console.Write($"{newArray[i]} ");
+                Console.WriteLine(nums[i] = rand.Next(0,100));
+            } 
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] > nums[j])
+                    {
+                        temp = nums[i];
+                        nums[i] = nums[j];
+                        nums[j] = temp;
+                    }
+
+                }
+            }
+
+            Console.WriteLine("\nSorting array:");
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.WriteLine(nums[i]);
             }
 
             Console.ReadKey();
-
-            int[] SelectionSort(int[] tempArray)
-            {
-
-                for (int i = 0; i < newArray.Length; i++)
-                {
-                    smallest = FindSmallest(tempArray);
-                    newArray[i] = smallest;
-                }
-
-                return tempArray;
-            }
-
-            int FindSmallest(int[] arr)
-            {
-                smallest = arr[0];
-                smallestIndex = 0;
-
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    if (arr[i] < smallest)
-                    {
-                        smallest = arr[i];
-                        smallestIndex = i;
-                    }
-                }
-                        return smallestIndex;
-            }
 
         }
     }
