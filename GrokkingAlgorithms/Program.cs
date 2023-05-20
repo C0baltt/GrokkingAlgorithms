@@ -12,16 +12,18 @@ namespace GrokkingAlgorithms
         {
             Random rand = new Random();
 
-            int[] nums = new int[rand.Next(10,30)];
+            int[] nums = new int[rand.Next(10,16)];
             int temp;
-
-            Console.WriteLine($"The length of array: {nums.Length + 1}\n");
-
+            int elementNumberInTheOutput = 1;
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Array:");
 
             for (int i = 0; i < nums.Length ; i++)
             {
-                Console.WriteLine(nums[i] = rand.Next(0,100));
+                nums[i] = rand.Next(0,50);
+
+                WriteArrayElement(i);
             } 
 
             for (int i = 0; i < nums.Length - 1; i++)
@@ -37,16 +39,40 @@ namespace GrokkingAlgorithms
 
                 }
             }
-
+            
+            elementNumberInTheOutput = 1;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\nSorting array:");
 
             for (int i = 0; i < nums.Length; i++)
             {
-                Console.WriteLine(nums[i]);
+                WriteArrayElement(i);
             }
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"\nThe number of array elements: {nums.Length}\n");
 
             Console.ReadKey();
 
+            void WriteArrayElement(int index)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{index}: ");
+                
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{nums[index]}");
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(" || ");
+
+                if (elementNumberInTheOutput > 9)
+                {
+                    elementNumberInTheOutput=1;
+                    Console.WriteLine();
+                }
+                elementNumberInTheOutput++;
+                   // Console.WriteLine();
+            }
         }
     }
 }
